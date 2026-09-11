@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Spice Street | Digital Menu</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <span>🍽️</span>
+        <div>
+            <h2>Spice Street</h2>
+            <small>Digital Menu</small>
+        </div>
+    </div>
+
+    <button class="qr-top-btn" onclick="openQR()">
+        📱 Get QR
+    </button>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="welcome">WELCOME TO</span>
+
+        <h1>
+            Spice Street
+            <span>Restaurant</span>
+        </h1>
+
+        <p>
+            Scan. Explore. Choose your favourite dish.
+        </p>
+
+        <button class="explore-btn"
+                onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+            Explore Menu ↓
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MENU ================= -->
+
+<section class="menu-section" id="menu">
+
+    <div class="section-heading">
+
+        <span>OUR MENU</span>
+
+        <h2>Choose Your Favourite</h2>
+
+        <p>
+            Tap any dish to discover its special ingredients and description.
+        </p>
+
+    </div>
+
+
+    <!-- Search -->
+
+    <div class="search-box">
+
+        <span>🔍</span>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search noodles, fried rice..."
+            oninput="searchFood()"
+        >
+
+    </div>
+
+
+    <!-- Categories -->
+
+    <div class="categories">
+
+        <button class="category active"
+                onclick="filterFood('all', this)">
+            All
+        </button>
+
+        <button class="category"
+                onclick="filterFood('main', this)">
+            🍜 Main Course
+        </button>
+
+        <button class="category"
+                onclick="filterFood('starter', this)">
+            🥡 Starters
+        </button>
+
+        <button class="category"
+                onclick="filterFood('drink', this)">
+            🥤 Drinks
+        </button>
+
+    </div>
+
+
+    <!-- Food Cards -->
+
+    <div class="food-grid" id="foodGrid">
+
+
+        <!-- NOODLES -->
+
+        <article class="food-card"
+                 data-category="main"
+                 data-name="noodles"
+                 onclick="showDetails('noodles')">
+
+            <div class="food-image">
+
+                <img src="C:\Users\ss\Desktop\Ajay fast food\noodles"
+                     alt="Vegetable Noodles">
+
+                <span class="popular">POPULAR</span>
+
+            </div>
+
+            <div class="food-info">
+
+                <div class="food-title">
+
+                    <h3>Special Noodles</h3>
+
+                    <strong>₹120</strong>
+
+                </div>
+
+                <p>
+                    Wok-tossed noodles with fresh vegetables.
+                </p>
+
+                <button>
+                    View Specials →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- FRIED RICE -->
+
+        <article class="food-card"
+                 data-category="main"
+                 data-name="fried rice"
+                 onclick="showDetails('friedrice')">
+
+            <div class="food-image">
+
+                <img src="C:\Users\ss\Desktop\Ajay fast food\fried rice"
+                     alt="Special Fried Rice">
+
+                <span class="veg">CHEF'S PICK</span>
+
+            </div>
+
+            <div class="food-info">
+
+                <div class="food-title">
+
+                    <h3>Special Fried Rice</h3>
+
+                    <strong>₹140</strong>
+
+                </div>
+
+                <p>
+                    Aromatic fried rice cooked with vegetables.
+                </p>
+
+                <button>
+                    View Specials →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- MANCHURIAN -->
+
+        <article class="food-card"
+                 data-category="starter"
+                 data-name="manchurian"
+                 onclick="showDetails('manchurian')">
+
+            <div class="food-image">
+
+                <img src="C:\Users\ss\Desktop\Ajay fast food\manchuria"
+                     alt="Veg Manchurian">
+
+                <span class="spicy">🔥 SPICY</span>
+
+            </div>
+
+            <div class="food-info">
+
+                <div class="food-title">
+
+                    <h3>Veg Manchurian</h3>
+
+                    <strong>₹130</strong>
+
+                </div>
+
+                <p>
+                    Crispy vegetable balls in a delicious sauce.
+                </p>
+
+                <button>
+                    View Specials →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- COLA -->
+
+        <article class="food-card"
+                 data-category="drink"
+                 data-name="cool drink cola"
+                 onclick="showDetails('cola')">
+
+            <div class="food-image">
+
+                <img src="C:\Users\ss\Desktop\Ajay fast food\chilled cola"
+                     alt="Cold Drink">
+
+            </div>
+
+            <div class="food-info">
+
+                <div class="food-title">
+
+                    <h3>Chilled Cola</h3>
+
+                    <strong>₹50</strong>
+
+                </div>
+
+                <p>
+                    Ice-cold refreshing soft drink.
+                </p>
+
+                <button>
+                    View Specials →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- JUICE -->
+
+        <article class="food-card"
+                 data-category="drink"
+                 data-name="fresh juice"
+                 onclick="showDetails('juice')">
+
+            <div class="food-image">
+
+                <img src="C:\Users\ss\Desktop\Ajay fast food\juice"
+                     alt="Fresh Juice">
+
+            </div>
+
+            <div class="food-info">
+
+                <div class="food-title">
+
+                    <h3>Fresh Fruit Juice</h3>
+
+                    <strong>₹80</strong>
+
+                </div>
+
+                <p>
+                    Freshly prepared chilled fruit drink.
+                </p>
+
+                <button>
+                    View Specials →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- WATER -->
+
+        <article class="food-card"
+                 data-category="drink"
+                 data-name="water bottle mineral water"
+                 onclick="showDetails('water')">
+
+            <div class="food-image">
+
+                <img src="C:\Users\ss\Desktop\Ajay fast food\mineral water"
+                     alt="Water Bottle">
+
+            </div>
+
+            <div class="food-info">
+
+                <div class="food-title">
+
+                    <h3>Mineral Water</h3>
+
+                    <strong>₹20</strong>
+
+                </div>
+
+                <p>
+                    Chilled packaged drinking water.
+                </p>
+
+                <button>
+                    View Specials →
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOD DETAILS MODAL ================= -->
+
+<div class="modal" id="foodModal">
+
+    <div class="details-card">
+
+        <button class="close"
+                onclick="closeModal('foodModal')">
+            ×
+        </button>
+
+        <img id="detailImage" src="" alt="Food">
+
+        <div class="details-content">
+
+            <span id="detailTag"></span>
+
+            <h2 id="detailName"></h2>
+
+            <div class="detail-price"
+                 id="detailPrice"></div>
+
+            <p id="detailDescription"></p>
+
+            <div class="special-box">
+
+                <h3>✨ Chef's Special</h3>
+
+                <p id="detailSpecial"></p>
+
+            </div>
+
+            <div class="ingredients">
+
+                <h3>Ingredients</h3>
+
+                <p id="detailIngredients"></p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= QR MODAL ================= -->
+
+<div class="modal" id="qrModal">
+
+    <div class="qr-card">
+
+        <button class="close"
+                onclick="closeModal('qrModal')">
+            ×
+        </button>
+
+        <div class="qr-icon">📱</div>
+
+        <h2>Restaurant QR Menu</h2>
+
+        <p>
+            Enter your deployed website URL and generate your menu QR code.
+        </p>
+
+        <input
+            type="url"
+            id="websiteURL"
+            placeholder="https://yourrestaurant.com"
+        >
+
+        <button class="generate-btn"
+                onclick="generateQR()">
+            Generate QR Code
+        </button>
+
+        <div id="qrcode"></div>
+
+        <p class="qr-note">
+            Customers can scan this QR code with their phone camera.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        🍽️ Spice Street
+    </div>
+
+    <p>
+        Digital Menu • Fresh Food • Great Taste
+    </p>
+
+    <small>
+        © 2026 Spice Street Restaurant
+    </small>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

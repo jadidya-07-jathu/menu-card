@@ -1,83 +1,63 @@
+/* =========================
+   FOOD DATA
+========================= */
+
 const foods = {
 
     noodles: {
         name: "Special Noodles",
         price: "₹120",
-        tag: "POPULAR",
-        description:
-            "Wok-tossed noodles with fresh vegetables and delicious sauces.",
-        special:
-            "Our chef's special sauce gives the noodles a unique restaurant-style flavour.",
-        ingredients:
-            "Noodles, cabbage, carrot, capsicum, garlic, spring onion and special sauce."
+        image: "images/noodles.jpg"
     },
 
     friedrice: {
         name: "Special Fried Rice",
         price: "₹140",
-        tag: "CHEF'S PICK",
-        description:
-            "Aromatic fried rice cooked with fresh vegetables and special seasoning.",
-        special:
-            "Prepared fresh in a hot wok to create a delicious smoky flavour.",
-        ingredients:
-            "Rice, carrot, beans, cabbage, capsicum, garlic, spring onion and seasoning."
+        image: "images/fried-rice.jpg"
     },
 
     manchurian: {
         name: "Veg Manchurian",
         price: "₹130",
-        tag: "🔥 SPICY",
-        description:
-            "Crispy vegetable balls served with a delicious sweet and spicy Manchurian sauce.",
-        special:
-            "Our homemade Manchurian sauce gives this dish its perfect sweet, spicy and tangy taste.",
-        ingredients:
-            "Mixed vegetables, corn flour, garlic, ginger, spring onion and Manchurian sauce."
+        image: "images/manchurian.jpg"
+    },
+
+    egg: {
+        name: "Egg",
+        price: "₹20",
+        image: "images/egg.jpg"
+    },
+
+    doubleegg: {
+        name: "Double Egg",
+        price: "₹35",
+        image: "images/double-egg.jpg"
+    },
+
+    chicken: {
+        name: "Chicken",
+        price: "₹100",
+        image: "images/chicken.jpg"
     },
 
     cola: {
         name: "Chilled Cola",
         price: "₹50",
-        tag: "REFRESHING",
-        description:
-            "An ice-cold and refreshing soft drink that goes perfectly with spicy food.",
-        special:
-            "Served chilled for the perfect refreshing experience.",
-        ingredients:
-            "Carbonated soft drink and ice."
-    },
-
-    juice: {
-        name: "Fresh Fruit Juice",
-        price: "₹80",
-        tag: "FRESH",
-        description:
-            "A refreshing fruit drink prepared with fresh seasonal fruits.",
-        special:
-            "Freshly prepared when ordered for a natural and refreshing taste.",
-        ingredients:
-            "Fresh seasonal fruits and chilled water."
+        image: "images/chilled-cola.jpg"
     },
 
     water: {
         name: "Mineral Water",
         price: "₹20",
-        tag: "ESSENTIAL",
-        description:
-            "Chilled packaged drinking water for a refreshing experience.",
-        special:
-            "Served chilled on request.",
-        ingredients:
-            "Packaged drinking water."
+        image: "images/water.jpg"
     }
 
 };
 
 
-/* =====================================
-   SHOW SPECIALS
-===================================== */
+/* =========================
+   SHOW PRODUCT
+========================= */
 
 function showDetails(foodId) {
 
@@ -87,58 +67,47 @@ function showDetails(foodId) {
         return;
     }
 
-    // Dish name
     document.getElementById("detailName").textContent =
         food.name;
 
-    // Price
     document.getElementById("detailPrice").textContent =
         food.price;
 
-    // Tag
-    document.getElementById("detailTag").textContent =
-        food.tag;
+    document.getElementById("detailImage").src =
+        food.image;
 
-    // Description
-    document.getElementById("detailDescription").textContent =
-        food.description;
+    document.getElementById("detailImage").alt =
+        food.name;
 
-    // Chef's Special
-    document.getElementById("detailSpecial").textContent =
-        food.special;
-
-    // Ingredients
-    document.getElementById("detailIngredients").textContent =
-        food.ingredients;
-
-    // Open popup
     document.getElementById("foodModal")
         .classList.add("show");
 }
 
 
-/* =====================================
-   CLOSE POPUP
-===================================== */
+/* =========================
+   CLOSE MODAL
+========================= */
 
 function closeModal(id) {
 
     document.getElementById(id)
         .classList.remove("show");
+
 }
 
 
-/* =====================================
+/* =========================
    SEARCH FOOD
-===================================== */
+========================= */
 
 function searchFood() {
 
     const search =
-        document.getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase()
+            .trim();
 
     const cards =
         document.querySelectorAll(".food-card");
@@ -159,29 +128,37 @@ function searchFood() {
         }
 
     });
+
 }
 
 
-/* =====================================
+/* =========================
    CATEGORY FILTER
-===================================== */
+========================= */
 
 function filterFood(category, button) {
 
     const cards =
         document.querySelectorAll(".food-card");
 
-    // Remove active from all buttons
-    document.querySelectorAll(".category")
+
+    /* Remove active */
+
+    document
+        .querySelectorAll(".category")
         .forEach(btn => {
 
             btn.classList.remove("active");
 
         });
 
-    // Add active to selected button
+
+    /* Add active */
+
     button.classList.add("active");
 
+
+    /* Filter */
 
     cards.forEach(card => {
 
@@ -199,60 +176,73 @@ function filterFood(category, button) {
         }
 
     });
+
 }
 
 
-/* =====================================
-   OPEN QR MODAL
-===================================== */
+/* =========================
+   OPEN QR
+========================= */
 
 function openQR() {
 
-    document.getElementById("qrModal")
+    document
+        .getElementById("qrModal")
         .classList.add("show");
+
 }
 
 
-/* =====================================
-   GENERATE QR CODE
-===================================== */
+/* =========================
+   GENERATE QR
+========================= */
 
 function generateQR() {
 
     const url =
-        document.getElementById("websiteURL")
-        .value
-        .trim();
+        document
+            .getElementById("websiteURL")
+            .value
+            .trim();
+
 
     if (url === "") {
 
-        alert("Please enter your restaurant website URL.");
+        alert(
+            "Please enter your restaurant website URL."
+        );
 
         return;
+
     }
 
 
-    // Check valid URL
     try {
 
         new URL(url);
 
-    } catch {
+    } catch (error) {
 
-        alert("Please enter a valid URL.");
+        alert(
+            "Please enter a valid URL."
+        );
 
         return;
+
     }
 
 
     const qrContainer =
         document.getElementById("qrcode");
 
-    // Remove old QR
+
+    /* Remove old QR */
+
     qrContainer.innerHTML = "";
 
 
-    // Generate new QR
+    /* Generate QR */
+
     new QRCode(qrContainer, {
 
         text: url,
@@ -273,41 +263,143 @@ function generateQR() {
 }
 
 
-/* =====================================
-   CLOSE MODAL WHEN CLICKING OUTSIDE
-===================================== */
+/* =========================
+   OPEN LOGIN
+========================= */
 
-document.querySelectorAll(".modal")
+function openLogin() {
+
+    document
+        .getElementById("loginModal")
+        .classList.add("show");
+
+
+    setTimeout(() => {
+
+        document
+            .getElementById("username")
+            .focus();
+
+    }, 200);
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function loginUser(event) {
+
+    event.preventDefault();
+
+
+    const username =
+        document
+            .getElementById("username")
+            .value
+            .trim();
+
+
+    const password =
+        document
+            .getElementById("password")
+            .value;
+
+
+    const message =
+        document.getElementById(
+            "loginMessage"
+        );
+
+
+    /*
+       Demo Login
+
+       Username: ajay
+       Password: 1234
+    */
+
+    if (
+        username === "ajay" &&
+        password === "1234"
+    ) {
+
+        message.textContent =
+            "✓ Login successful!";
+
+        message.className =
+            "login-message success";
+
+
+        setTimeout(() => {
+
+            closeModal("loginModal");
+
+        }, 900);
+
+    } else {
+
+        message.textContent =
+            "Invalid username or password.";
+
+        message.className =
+            "login-message error";
+
+    }
+
+}
+
+
+/* =========================
+   CLICK OUTSIDE MODAL
+========================= */
+
+document
+    .querySelectorAll(".modal")
     .forEach(modal => {
 
-        modal.addEventListener("click", function(event) {
+        modal.addEventListener(
+            "click",
+            function (event) {
 
-            if (event.target === modal) {
+                if (
+                    event.target === modal
+                ) {
 
-                modal.classList.remove("show");
+                    modal.classList.remove(
+                        "show"
+                    );
+
+                }
 
             }
-
-        });
+        );
 
     });
 
 
-/* =====================================
-   ESC KEY CLOSE
-===================================== */
+/* =========================
+   ESC KEY
+========================= */
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener(
+    "keydown",
+    function (event) {
 
-    if (event.key === "Escape") {
+        if (event.key === "Escape") {
 
-        document.querySelectorAll(".modal")
-            .forEach(modal => {
+            document
+                .querySelectorAll(".modal")
+                .forEach(modal => {
 
-                modal.classList.remove("show");
+                    modal.classList.remove(
+                        "show"
+                    );
 
-            });
+                });
+
+        }
 
     }
-
-});
+);
